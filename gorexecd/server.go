@@ -2,7 +2,7 @@ package main
 
 import (
 	"crypto/tls"
-    "flag"
+	"flag"
 	"io"
 	"log"
 	"net"
@@ -16,9 +16,9 @@ import (
 
 // Some constants related to command-line options
 const (
-    portFlagName         = "p"
-    portFlagDefaultValue = "9323"
-    portFlagDescription  = "specify the port number on which to listen for connections"
+	portFlagName         = "p"
+	portFlagDefaultValue = "9323"
+	portFlagDescription  = "specify the port number on which to listen for connections"
 )
 
 // RemoteCommand specifies the command sent by the client to be executed locally
@@ -38,19 +38,19 @@ type CommandResponse struct {
 
 // Prints the usage info for the program
 func usage() {
-    log.Printf("usage: %s [<port>]\noptions:", os.Args[0])
-    flag.PrintDefaults()
-    log.Fatalln("")
+	log.Printf("usage: %s [<port>]\noptions:", os.Args[0])
+	flag.PrintDefaults()
+	log.Fatalln("")
 }
 
 func main() {
-    var port string
-    flag.StringVar(&port, portFlagName, portFlagDefaultValue, portFlagDescription)
-    flag.Parse()
-    if !flag.Parsed() {
-        log.Printf("%s: invalid argument(s)\n", os.Args[0])
-        usage()
-    }
+	var port string
+	flag.StringVar(&port, portFlagName, portFlagDefaultValue, portFlagDescription)
+	flag.Parse()
+	if !flag.Parsed() {
+		log.Printf("%s: invalid argument(s)\n", os.Args[0])
+		usage()
+	}
 
 	cert := os.Getenv("TLS_CERT")
 	key := os.Getenv("TLS_KEY")
@@ -67,13 +67,13 @@ func main() {
 			Certificates:       []tls.Certificate{tlsCert},
 		}
 
-        listener, err = tls.Listen("tcp", "127.0.0.1:" + port, tlsConfig)
+		listener, err = tls.Listen("tcp", "127.0.0.1:"+port, tlsConfig)
 		if err != nil {
 			log.Fatal(err)
 		}
 	} else {
 		var err error
-        listener, err = net.Listen("tcp", "127.0.0.1:" + port)
+		listener, err = net.Listen("tcp", "127.0.0.1:"+port)
 		if err != nil {
 			log.Fatal(err)
 		}

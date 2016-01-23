@@ -2,7 +2,7 @@ package main
 
 import (
 	"crypto/tls"
-    "flag"
+	"flag"
 	"io"
 	"log"
 	"net"
@@ -14,9 +14,9 @@ import (
 
 // Some constants related to command-line options
 const (
-    addressFlagName         = "a"
-    addressFlagDefaultValue = "127.0.0.1:9323"
-    addressFlagDescription  = `specify the socket on the server node to which to connect
+	addressFlagName         = "a"
+	addressFlagDefaultValue = "127.0.0.1:9323"
+	addressFlagDescription  = `specify the socket on the server node to which to connect
 (<address> is of the format <host>:<port> where <host> may be an IP address or a hostname)`
 )
 
@@ -37,9 +37,9 @@ type CommandResponse struct {
 
 // Prints usage info for the program
 func usage() {
-    log.Printf("usage: %s [-a <address>] <command> [<arg> ...]\noptions:", os.Args[0])
-    flag.PrintDefaults()
-    log.Fatalln(`
+	log.Printf("usage: %s [-a <address>] <command> [<arg> ...]\noptions:", os.Args[0])
+	flag.PrintDefaults()
+	log.Fatalln(`
   <command> [<arg> ...]  the command to execute remotely and its arguments
   (the arguments are optional)")
 `)
@@ -47,15 +47,15 @@ func usage() {
 
 func main() {
 	if len(os.Args) < 2 {
-        usage()
+		usage()
 	}
-    var addr string
-    flag.StringVar(&addr, addressFlagName, addressFlagDefaultValue, addressFlagDescription)
-    flag.Parse()
-    if !flag.Parsed() {
-        log.Printf("%s: invalid argument(s)\n", os.Args[0])
-        usage()
-    }
+	var addr string
+	flag.StringVar(&addr, addressFlagName, addressFlagDefaultValue, addressFlagDescription)
+	flag.Parse()
+	if !flag.Parsed() {
+		log.Printf("%s: invalid argument(s)\n", os.Args[0])
+		usage()
+	}
 
 	var client net.Conn
 	var err error
@@ -81,7 +81,7 @@ func main() {
 	receiver, remoteSender := libchan.Pipe()
 
 	command := &RemoteCommand{
-        Cmd:        flag.Args[0],
+		Cmd:        flag.Args[0],
 		Args:       flag.Args[1:],
 		Stdin:      os.Stdin,
 		Stdout:     os.Stdout,
