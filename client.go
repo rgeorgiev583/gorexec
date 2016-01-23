@@ -20,7 +20,7 @@ const (
 (<address> is of the format <host>:<port> where <host> may be an IP address or a hostname)`
 )
 
-// RemoteCommand is the run parameters to be executed remotely
+// RemoteCommand specifies the command sent to the server to be executed remotely
 type RemoteCommand struct {
 	Cmd        string
 	Args       []string
@@ -30,7 +30,7 @@ type RemoteCommand struct {
 	StatusChan libchan.Sender
 }
 
-// CommandResponse is the returned response object from the remote execution
+// CommandResponse specifies the returned status code from the remote execution
 type CommandResponse struct {
 	Status int
 }

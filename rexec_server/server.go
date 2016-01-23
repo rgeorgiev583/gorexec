@@ -21,7 +21,7 @@ const (
     portFlagDescription  = "specify the port number on which to listen for connections"
 )
 
-// RemoteCommand is the received command parameters to execute locally and return
+// RemoteCommand specifies the command sent by the client to be executed locally
 type RemoteCommand struct {
 	Cmd        string
 	Args       []string
@@ -31,7 +31,7 @@ type RemoteCommand struct {
 	StatusChan libchan.Sender
 }
 
-// CommandResponse is the response struct to return to the client
+// CommandResponse specifies the response code to return to the client
 type CommandResponse struct {
 	Status int
 }
