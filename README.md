@@ -83,35 +83,80 @@ On the server side:
 15. The server continues with the next command and, respectively, connection.
 
 
-### Usage
+### Installation
 
-Server
 ~~~~
-$ cd rexec_server
-$ go build .
-$ ./rexec_server
+$ go get github.com/rgeorgiev583/gorexec
+~~~~
+
+
+### Usage (when installed)
+
+Server (IP: 10.0.0.1)
+~~~~
+$ gorexecd 1234
 ~~~~
 
 Client
+
 ~~~~
-$ go build .
-$ ./rexec /bin/echo "hello"
+$ gorexec -a 10.0.0.1:1234 /bin/echo "hello"
 hello
-$ ./rexec /bin/sh -c "exit 4"
+$ gorexec -a 10.0.0.1:1234 /bin/sh -c "exit 4"
 $ echo $?
 4
 ~~~~
 
 
-### Usage with TLS
+### Usage (without installation)
 
 Server
 ~~~~
-$ TLS_CERT=./cert.pem TLS_KEY=./key.pem ./rexec_server
+$ cd gorexecd
+$ go build .
+$ ./gorexecd
 ~~~~
 
 Client
 ~~~~
-$ USE_TLS=true ./rexec /bin/echo "hello"
+$ go build .
+$ ./gorexec /bin/echo "hello"
+hello
+$ ./gorexec /bin/sh -c "exit 4"
+$ echo $?
+4
+~~~~
+
+
+### Usage with custom IP and port (without installation)
+
+Server (IP: 10.0.0.1)
+~~~~
+$ cd gorexecd
+$ go build .
+$ ./gorexecd 1234
+~~~~
+
+Client
+~~~~
+$ go build .
+$ ./gorexec -a 10.0.0.1:1234 /bin/echo "hello"
+hello
+$ ./gorexec -a 10.0.0.1:1234 /bin/sh -c "exit 4"
+$ echo $?
+4
+~~~~
+
+
+### Usage with TLS (without installation)
+
+Server
+~~~~
+$ TLS_CERT=./cert.pem TLS_KEY=./key.pem ./gorexecd
+~~~~
+
+Client
+~~~~
+$ USE_TLS=true ./gorexec /bin/echo "hello"
 hello
 ~~~~
