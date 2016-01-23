@@ -2,6 +2,7 @@ package main
 
 import (
 	"crypto/tls"
+    "flag"
 	"io"
 	"log"
 	"net"
@@ -9,6 +10,14 @@ import (
 
 	"github.com/docker/libchan"
 	"github.com/docker/libchan/spdy"
+)
+
+// Some constants related to command-line options
+const (
+    addressFlagName         = "a"
+    addressFlagDefaultValue = "127.0.0.1:9323"
+    addressFlagDescription  = `specify the socket on the server node to which to connect
+(<address> is of the format <host>:<port> where <host> may be an IP address or a hostname)`
 )
 
 // RemoteCommand is the run parameters to be executed remotely
@@ -26,17 +35,34 @@ type CommandResponse struct {
 	Status int
 }
 
+// Prints usage info for the program
+func usage() {
+    log.Printf("usage: %s [-a <address>] <command> [<arg> ...]\noptions:", os.Args[0])
+    flag.PrintDefaults()
+    log.Fatalln(`
+  <command> [<arg> ...]  the command to execute remotely and its arguments
+  (the arguments are optional)")
+`)
+}
+
 func main() {
 	if len(os.Args) < 2 {
-		log.Fatal("usage: <command> [<arg> ]")
+        usage()
 	}
+    var addr string
+    flag.StringVar(&addr, addressFlagName, addressFlagDefaultValue, addressFlagDescription)
+    flag.Parse()
+    if !flag.Parsed() {
+        log.Printf("%s: invalid argument(s)\n", os.Args[0])
+        usage()
+    }
 
 	var client net.Conn
 	var err error
 	if os.Getenv("USE_TLS") != "" {
-		client, err = tls.Dial("tcp", "127.0.0.1:9323", &tls.Config{InsecureSkipVerify: true})
+		client, err = tls.Dial("tcp", addr, &tls.Config{InsecureSkipVerify: true})
 	} else {
-		client, err = net.Dial("tcp", "127.0.0.1:9323")
+		client, err = net.Dial("tcp", addr)
 	}
 	if err != nil {
 		log.Fatal(err)
@@ -55,8 +81,8 @@ func main() {
 	receiver, remoteSender := libchan.Pipe()
 
 	command := &RemoteCommand{
-		Cmd:        os.Args[1],
-		Args:       os.Args[2:],
+        Cmd:        flag.Args[0],
+		Args:       flag.Args[1:],
 		Stdin:      os.Stdin,
 		Stdout:     os.Stdout,
 		Stderr:     os.Stderr,
