@@ -7,7 +7,7 @@ This was written for a course project for the Network Programming course at
 FMI @ Sofia University.
 
 
-### Architecture
+## Architecture
 
 It consists of a server part (where the command is executed) and a client part
 (which sends the command for execution).  They use the **libchan** Golang
@@ -28,7 +28,7 @@ bytestream (TCP, UDP, etc.)  The reference implementation uses the
 (It can also be used over Unix sockets, websockets, HTTP, etc.)
 
 
-### Protocol
+## Protocol
 
 The server and client communicate in the following manner:
 
@@ -83,11 +83,14 @@ On the server side:
 15. The server continues with the next command and, respectively, connection.
 
 
+## Installation and usage (instructions for Linux)
+
 ### Before installation
 
-1. Verify that Golang is installed on the system and that the GOPATH
-environment variable is set to point to a "go" directory somewhere, and is
-included in PATH:
+1. Install Go using your distribution's package manager.
+
+2. Verify that Go is installed on the system and that the GOPATH environment
+variable is set to point to a "go" directory somewhere, and is included in PATH:
 
 ~~~~
 $ sudo apt-get install go
@@ -97,7 +100,7 @@ export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 ~~~~
 
-2. Install the following dependencies:
+3. Install the following dependencies:
 
 ~~~~
 $ go get github.com/dmcgowan/msgpack
@@ -106,7 +109,7 @@ $ go get github.com/docker/libchan
 ~~~~
 
 
-### Installation
+### Quick installation
 
 ~~~~
 $ go get github.com/rgeorgiev583/gorexec
@@ -125,13 +128,13 @@ $ go install
 
 ### Usage (when installed)
 
-Server (IP: 10.0.0.1)
+**Server (IP: 10.0.0.1)**
 
 ~~~~
 $ gorexecd 1234
 ~~~~
 
-Client
+**Client**
 
 ~~~~
 $ gorexec -a 10.0.0.1:1234 /bin/echo "hello"
@@ -144,7 +147,7 @@ $ echo $?
 
 ### Usage (without installation)
 
-Server
+**Server**
 
 ~~~~
 $ cd gorexecd
@@ -152,7 +155,7 @@ $ go build .
 $ ./gorexecd
 ~~~~
 
-Client
+**Client**
 
 ~~~~
 $ go build .
@@ -166,7 +169,7 @@ $ echo $?
 
 ### Usage with custom IP and port (without installation)
 
-Server (IP: 10.0.0.1)
+**Server (IP: 10.0.0.1)**
 
 ~~~~
 $ cd gorexecd
@@ -174,7 +177,7 @@ $ go build .
 $ ./gorexecd 1234
 ~~~~
 
-Client
+**Client**
 
 ~~~~
 $ go build .
@@ -188,13 +191,13 @@ $ echo $?
 
 ### Usage with TLS (without installation)
 
-Server
+**Server**
 
 ~~~~
 $ TLS_CERT=./cert.pem TLS_KEY=./key.pem ./gorexecd
 ~~~~
 
-Client
+**Client**
 
 ~~~~
 $ USE_TLS=true ./gorexec /bin/echo "hello"
