@@ -110,7 +110,8 @@ $ go get github.com/rgeorgiev583/gorexec
 ### Installation from source
 
 1. Clone the repo.
-2. In each of the two subdirecties:
+2. Copy its contents to `$GOPATH/src/github.com/rgeorgiev583/gorexec`.
+3. In each of the two subdirecties there:
 
 ~~~~
 $ go install
