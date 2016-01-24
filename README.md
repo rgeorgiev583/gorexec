@@ -85,7 +85,7 @@ On the server side:
 
 ### Before installation
 
-Verify that Golang is installed on the system and that the GOPATH
+1. Verify that Golang is installed on the system and that the GOPATH
 environment variable is set to point to a "go" directory somewhere, and is
 included in PATH.
 
@@ -97,6 +97,14 @@ $ mkdir ~/go
 $ cat >> ~/.profile
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+~~~~
+
+2. Install the following dependencies:
+
+~~~~
+$ go get github.com/dmcgowan/msgpack
+$ go get github.com/docker/spdystream
+$ go get github.com/docker/libchan
 ~~~~
 
 
