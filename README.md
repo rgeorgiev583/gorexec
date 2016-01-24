@@ -87,9 +87,7 @@ On the server side:
 
 1. Verify that Golang is installed on the system and that the GOPATH
 environment variable is set to point to a "go" directory somewhere, and is
-included in PATH.
-
-Like this:
+included in PATH:
 
 ~~~~
 $ sudo apt-get install go
@@ -117,9 +115,8 @@ $ go get github.com/rgeorgiev583/gorexec
 
 ### Installation from source
 
-1. Clone the repo.
-2. Copy its contents to `$GOPATH/src/github.com/rgeorgiev583/gorexec`.
-3. In each of the two subdirecties there:
+1. Clone the repo into `$GOPATH/src/github.com/rgeorgiev583/gorexec`.
+2. In each of the two subdirecties there:
 
 ~~~~
 $ go install
