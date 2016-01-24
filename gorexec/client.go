@@ -81,8 +81,8 @@ func main() {
 	receiver, remoteSender := libchan.Pipe()
 
 	command := &RemoteCommand{
-		Cmd:        flag.Args[0],
-		Args:       flag.Args[1:],
+		Cmd:        flag.Args()[0],
+        Args:       flag.Args()[1:],
 		Stdin:      os.Stdin,
 		Stdout:     os.Stdout,
 		Stderr:     os.Stderr,
