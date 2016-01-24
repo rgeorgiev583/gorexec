@@ -110,7 +110,7 @@ $ go get github.com/docker/libchan
 ### Quick installation
 
 ~~~~
-$ go get github.com/rgeorgiev583/gorexec
+$ go get github.com/rgeorgiev583/gorexec/gorexec
 ~~~~
 
 
