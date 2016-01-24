@@ -82,7 +82,7 @@ func main() {
 
 	command := &RemoteCommand{
 		Cmd:        flag.Args()[0],
-        Args:       flag.Args()[1:],
+		Args:       flag.Args()[1:],
 		Stdin:      os.Stdin,
 		Stdout:     os.Stdout,
 		Stderr:     os.Stderr,
