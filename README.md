@@ -83,10 +83,37 @@ On the server side:
 15. The server continues with the next command and, respectively, connection.
 
 
+### Before installation
+
+Verify that Golang is installed on the system and that the GOPATH
+environment variable is set to point to a "go" directory somewhere, and is
+included in PATH.
+
+Like this:
+
+~~~~
+$ sudo apt-get install go
+$ mkdir ~/go
+$ cat >> ~/.profile
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+~~~~
+
+
 ### Installation
 
 ~~~~
 $ go get github.com/rgeorgiev583/gorexec
+~~~~
+
+
+### Installation from source
+
+1. Clone the repo.
+2. In each of the two subdirecties:
+
+~~~~
+$ go install
 ~~~~
 
 
