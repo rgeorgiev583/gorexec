@@ -88,7 +88,6 @@ On the server side:
 ### Before installation
 
 1. Install Go using your distribution's package manager.
-
 2. Verify that Go is installed on the system and that the GOPATH environment
 variable is set to point to a "go" directory somewhere, and is included in PATH:
 
@@ -99,7 +98,6 @@ $ cat >> ~/.profile
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 ~~~~
-
 3. Install the following dependencies:
 
 ~~~~
