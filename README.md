@@ -149,14 +149,15 @@ $ echo $?
 
 ~~~~
 $ cd gorexecd
-$ go build .
+$ go build
 $ ./gorexecd
 ~~~~
 
 **Client**
 
 ~~~~
-$ go build .
+$ cd gorexec
+$ go build
 $ ./gorexec /bin/echo "hello"
 hello
 $ ./gorexec /bin/sh -c "exit 4"
@@ -171,14 +172,15 @@ $ echo $?
 
 ~~~~
 $ cd gorexecd
-$ go build .
+$ go build
 $ ./gorexecd 1234
 ~~~~
 
 **Client**
 
 ~~~~
-$ go build .
+$ cd gorexec
+$ go build
 $ ./gorexec -a 10.0.0.1:1234 /bin/echo "hello"
 hello
 $ ./gorexec -a 10.0.0.1:1234 /bin/sh -c "exit 4"
